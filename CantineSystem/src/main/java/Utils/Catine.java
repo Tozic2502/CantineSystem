@@ -1,4 +1,4 @@
-package DB;
+package Utils;
 
 public class Catine {
     private int no;
