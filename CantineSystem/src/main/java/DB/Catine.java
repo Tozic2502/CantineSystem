@@ -1,17 +1,17 @@
 package DB;
 
-public class Cantine {
+public class Catine {
     private int no;
     private String name;
     private double price;
 
 
-    public Cantine(int no, String name, double price){
+    public Catine(int no, String name, double price){
         this.no=no;
         this.name=name;
         this.price=price;
     }
-    public Cantine(){
+    public Catine(){
 
     }
 

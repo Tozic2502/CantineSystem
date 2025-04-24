@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.Properties;
 
 
-public class CantineDAODatabase implements CantineDAO {
+public class CatineDAODatabase implements CatineDAO {
 
 
 
@@ -21,7 +21,7 @@ public class CantineDAODatabase implements CantineDAO {
     static {
         Properties props = new Properties();
 
-        try (InputStream input = CantineDAODatabase.class.getClassLoader().getResourceAsStream("db.properties")) {
+        try (InputStream input = CatineDAODatabase.class.getClassLoader().getResourceAsStream("db.properties")) {
             if (input == null) {
                 throw new RuntimeException("db.properties not found");
             }
