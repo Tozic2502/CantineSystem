@@ -4,11 +4,8 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-
-public class CatineDAODatabase implements CatineDAO {
-
-
-
+public class SqlConnection
+{
     private static Connection con;
     private static String port;
     private static String databaseName;
@@ -18,11 +15,14 @@ public class CatineDAODatabase implements CatineDAO {
     private static ResultSet rs;
 
 
-    static {
+    static
+    {
         Properties props = new Properties();
 
-        try (InputStream input = CatineDAODatabase.class.getClassLoader().getResourceAsStream("db.properties")) {
-            if (input == null) {
+        try (InputStream input = SqlConnection.class.getClassLoader().getResourceAsStream("db.properties"))
+        {
+            if (input == null)
+            {
                 throw new RuntimeException("db.properties not found");
             }
             props.load(input);
@@ -34,23 +34,28 @@ public class CatineDAODatabase implements CatineDAO {
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
-    public static Connection connect(){
-        try {
-            if (con == null || con.isClosed()) {
+    public static Connection getConnection()
+    {
+        try
+        {
+            if (con == null || con.isClosed())
+            {
                 con = DriverManager.getConnection("jdbc:sqlserver://localhost:" + port + ";databaseName=" + databaseName, userName, password);
                 System.out.println("Database connection established.");
+                return con;
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             System.err.println("Error establishing connection: " + e.getMessage());
         }
 
         return null;
     }
-
-
-
 }

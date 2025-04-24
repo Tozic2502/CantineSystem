@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.cantinesystem.HelloController">
+<VBox alignment="CENTER" prefHeight="316.0" prefWidth="325.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.cantinesystem.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+   <children>
+      <HBox prefHeight="100.0" prefWidth="306.0" spacing="40.0">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="217.0">
+               <children>
+                  <Label fx:id="LoginUserName" prefHeight="18.0" prefWidth="136.0" text="Login with Username" />
+                  <Button fx:id="BUserName" mnemonicParsing="false" onAction="#OnUserNameChosen" text="Select">
+                     <VBox.margin>
+                        <Insets left="30.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TextField fx:id="TUserName" promptText="Username" visible="false" />
+                  <TextField fx:id="TPassword" promptText="Password" visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="210.0">
+               <children>
+                  <Label fx:id="LoginID" prefHeight="18.0" prefWidth="106.0" text="Login with ID" />
+                  <Button fx:id="BID" mnemonicParsing="false" onAction="#OnIDChosen" text="Select">
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TextField fx:id="TID" visible="false" />
+                  <Button fx:id="BConfirmID" mnemonicParsing="false" onAction="#OnConfirmID" text="Confirm" visible="false">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
 </VBox>

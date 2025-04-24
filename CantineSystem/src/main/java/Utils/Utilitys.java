@@ -4,11 +4,7 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-
-public class CatineDAODatabase implements CatineDAO {
-
-
-
+public class Utilitys {
     private static Connection con;
     private static String port;
     private static String databaseName;
@@ -21,7 +17,7 @@ public class CatineDAODatabase implements CatineDAO {
     static {
         Properties props = new Properties();
 
-        try (InputStream input = CatineDAODatabase.class.getClassLoader().getResourceAsStream("db.properties")) {
+        try (InputStream input = Utilitys.class.getClassLoader().getResourceAsStream("db.properties")) {
             if (input == null) {
                 throw new RuntimeException("db.properties not found");
             }
@@ -50,7 +46,4 @@ public class CatineDAODatabase implements CatineDAO {
 
         return null;
     }
-
-
-
 }
