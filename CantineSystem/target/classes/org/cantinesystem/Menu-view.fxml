@@ -18,12 +18,14 @@
   </rowConstraints>
    <children>
       <ListView fx:id="menuList" prefHeight="159.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Label prefHeight="18.0" prefWidth="88.0" text="Saldo" GridPane.rowIndex="1" />
-      <Label prefHeight="18.0" prefWidth="181.0" text="Amount Change when to saldo" GridPane.rowIndex="2" />
+      <Label fx:id="saldoLabel" prefHeight="18.0" prefWidth="88.0" text="Saldo:" GridPane.rowIndex="1" />
       <Label prefHeight="52.0" prefWidth="195.0" text="Menu" GridPane.columnIndex="1">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
+      <Button fx:id="confirmButton" mnemonicParsing="false" text="Confirm" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="logOutButton" mnemonicParsing="false" text="Log out" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Label fx:id="chargedLabel" text="Charged" GridPane.rowIndex="2" />
    </children>
 </GridPane>
