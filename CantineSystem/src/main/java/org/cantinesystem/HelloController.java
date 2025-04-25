@@ -96,13 +96,15 @@ public class HelloController
 
                 // Pass data to the controller
                 MenuController controller = loader.getController();
-                controller.setEmployeeData(employeeId, saldo); // You'll need to implement this
+                controller.setEmployeeData(employeeId, saldo);
+
 
                 // Replace the scene
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Menu");
                 stage.show();
+                conn.close();
             }
         }
         catch (SQLException e)
