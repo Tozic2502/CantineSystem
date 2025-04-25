@@ -56,6 +56,6 @@ public class SqlConnection
             System.err.println("Error establishing connection: " + e.getMessage());
         }
 
-        return null;
+        return con;
     }
 }

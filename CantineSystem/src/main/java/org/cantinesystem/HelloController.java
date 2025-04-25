@@ -1,5 +1,7 @@
 package org.cantinesystem;
 
+import Service.EmployeeDAO;
+import Service.EmployeeService;
 import Utils.SqlConnection;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import models.Employee;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.*;
@@ -21,6 +25,8 @@ import java.sql.*;
 
 public class HelloController
 {
+    private EmployeeDAO employeeDAO;
+
     @FXML Label LoginID, LoginUserName;
     @FXML Button BUserName, BID, BConfirmID;
     @FXML TextField TUserName, TID, TPassword;
@@ -28,9 +34,9 @@ public class HelloController
 
 
     @FXML
-    public void Initialize()
+    public void initialize()
     {
-
+        this.employeeDAO = new EmployeeService();
     }
 
     /**
@@ -55,6 +61,7 @@ public class HelloController
         LoginUserName.setVisible(false);
         LoginID.setText("Please Enter Your ID");
         TID.setVisible(true);
+        //Sets KeyEvent listener on field after this login method is chosen
         TID.setOnKeyReleased(keyEvent ->
         {
             if (keyEvent.getCode() == KeyCode.ENTER)
@@ -70,33 +77,19 @@ public class HelloController
     @FXML
     public void OnConfirmID(ActionEvent event) throws IOException
     {
-        System.out.println(event.getSource());
-        String id = TID.getText();
-
-        try (Connection conn = SqlConnection.getConnection())
+        try
         {
-            assert conn != null;
-            CallableStatement stmt = conn.prepareCall("{Call Get_Employee_By_Employee_nr (?)}");
-            stmt.setString(1, id);
-            ResultSet rs = stmt.executeQuery();
+            Employee employee = employeeDAO.getEmployeeByEmployeeNR(TID.getText());
 
-
-            if (!rs.next())
+            if (employee != null)
             {
-                System.out.println("User not found");
-            }
-            else
-            {
-                int employeeId = rs.getInt("Employee_Id");
-                BigDecimal saldo = rs.getBigDecimal("Saldo");
-
                 // Load menu-view.fxml
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
                 Parent root = loader.load();
 
                 // Pass data to the controller
                 MenuController controller = loader.getController();
-                controller.setEmployeeData(employeeId, saldo); // You'll need to implement this
+                controller.setEmployeeData(employee); // You'll need to implement this
 
                 // Replace the scene
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -104,10 +97,14 @@ public class HelloController
                 stage.setTitle("Menu");
                 stage.show();
             }
+            else
+            {
+                System.out.println("User not found");
+            }
         }
-        catch (SQLException e)
+        catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
