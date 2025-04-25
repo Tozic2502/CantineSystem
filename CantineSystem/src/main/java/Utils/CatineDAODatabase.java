@@ -17,8 +17,12 @@ public class CatineDAODatabase implements CatineDAO {
     private static PreparedStatement ps;
     private static ResultSet rs;
 
+    /**
+     * Handles database connection and configuration for the Catine data access.
+     */
 
     static {
+        // Loads database properties from db.properties
         Properties props = new Properties();
 
         try (InputStream input = CatineDAODatabase.class.getClassLoader().getResourceAsStream("db.properties")) {
@@ -38,6 +42,11 @@ public class CatineDAODatabase implements CatineDAO {
             e.printStackTrace();
         }
     }
+    /**
+     * Establishes and returns a database connection.
+     *
+     * @return a database connection
+     */
     public static Connection connect(){
         try {
             if (con == null || con.isClosed()) {

@@ -13,11 +13,21 @@ import javafx.scene.control.Label;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controls the menu screen, displaying menu items and handling user actions such as ordering and logging out.
+ */
+
 public class MenuController
 {
     private Employee employee;
     private MenuDAO menuDAO;
     private List<Menu> menuItems = new ArrayList<>();
+
+    /**
+     * Sets employee data and updates the UI with employee details.
+     *
+     * @param employee the employee whose data is to be displayed
+     */
 
     public void setEmployeeData(Employee employee)
     {
@@ -45,12 +55,20 @@ public class MenuController
     @FXML
     private javafx.scene.control.Button logOutButton;
 
+    /**
+     * Initializes the controller, loading the menu items from the database.
+     */
+
     @FXML
     public void initialize()
     {
         menuDAO = new MenuService();
         loadMenuItems();
     }
+
+    /**
+     * Loads menu items from the database and displays them in the menu list.
+     */
 
     private void loadMenuItems()
     {
@@ -73,6 +91,10 @@ public class MenuController
         menuList.setItems(displayList);
     }
 
+    /**
+     * Handles the confirm button click. Checks if the employee has enough saldo to purchase the selected item.
+     */
+
     @FXML
     private void handleConfirmButton() {
         int selectedIndex = menuList.getSelectionModel().getSelectedIndex();
@@ -93,6 +115,10 @@ public class MenuController
             priceLabel.setText("Select an item first!");
         }
     }
+
+    /**
+     * Logs out the user by closing the application.
+     */
 
     @FXML
     private void handleLogOutButton() {

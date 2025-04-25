@@ -12,8 +12,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implements the MenuDAO interface to interact with menu data in the database.
+ */
+
 public class MenuService implements MenuDAO
 {
+
+    /**
+     * Retrieves all menu items from the database.
+     *
+     * @return a list of menu items
+     */
+
     @Override
     public List<Menu> getAllMenusItems()
     {

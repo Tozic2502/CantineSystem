@@ -7,13 +7,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Implements the EmployeeDAO interface to interact with employee data in the database.
+ */
+
 public class EmployeeService implements EmployeeDAO
 {
     /***
-     * Takes employee number to check if it matches with one in the database.
-     * On a match it will return the employee info, otherwise you get null
-     * @param employee_NR
-     * @return
+     * Retrieves an employee by their employee number from the database.
+     * Returns employee details if found, or null if not found.
+     *
+     * @param employee_NR the employee number to search for
+     * @return the employee object if found, or null if not
      */
     @Override
     public Employee getEmployeeByEmployeeNR(String employee_NR)

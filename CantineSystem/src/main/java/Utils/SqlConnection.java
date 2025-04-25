@@ -4,6 +4,10 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
+/**
+ * Manages database connection using properties from db.properties.
+ */
+
 public class SqlConnection
 {
     private static Connection con;
@@ -16,6 +20,7 @@ public class SqlConnection
 
 
     static
+    // Loads database connection properties
     {
         Properties props = new Properties();
 
@@ -40,6 +45,12 @@ public class SqlConnection
             e.printStackTrace();
         }
     }
+
+    /**
+     * Returns a database connection. Establishes a new connection if not already created.
+     *
+     * @return the database connection
+     */
     public static Connection getConnection()
     {
         try

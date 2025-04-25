@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.*;
 
-
+/**
+ * Controls login logic and UI transitions between username and ID-based logins.
+ */
 public class HelloController
 {
     private EmployeeDAO employeeDAO;
@@ -31,7 +33,9 @@ public class HelloController
     @FXML Button BUserName, BID, BConfirmID;
     @FXML TextField TUserName, TID, TPassword;
 
-
+    /**
+     * Initializes the employeeDAO for database interaction.
+     */
 
     @FXML
     public void initialize()
@@ -40,7 +44,7 @@ public class HelloController
     }
 
     /**
-     * Changes to Username and password for login
+     * Switches to username login mode and shows the username field.
      */
     @FXML
     public void OnUserNameChosen()
@@ -52,7 +56,7 @@ public class HelloController
     }
 
     /**
-     * Changes to id login
+     * Switches to ID login mode and shows the ID field.
      */
     @FXML
     public void OnIDChosen()
@@ -73,6 +77,12 @@ public class HelloController
 
     }
 
+    /**
+     * Confirms the entered ID, loads the menu if the employee is found.
+     *
+     * @param event the action event that triggers the method
+     * @throws IOException if the menu view cannot be loaded
+     */
 
     @FXML
     public void OnConfirmID(ActionEvent event) throws IOException
@@ -111,7 +121,7 @@ public class HelloController
 
 
     /**
-     * Removes other button
+     * Hides the username and ID buttons after a login method is chosen.
      */
     public void LoginChosen()
     {
