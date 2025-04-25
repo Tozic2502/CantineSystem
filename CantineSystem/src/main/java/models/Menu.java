@@ -5,20 +5,38 @@ public class Menu {
     private double price;
     private int menu_id;
 
-    public String getFood() {
+    public int getMenu_id()
+    {
+        return menu_id;
+    }
+
+    public void setMenu_id(int menu_id)
+    {
+        this.menu_id = menu_id;
+    }
+
+    public String getFood()
+    {
         return food;
     }
 
-    public void setFood(String food) {
+    public void setFood(String food)
+    {
         this.food = food;
     }
 
-    public double getPrice() {
+    public double getPrice()
+    {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price)
+    {
         this.price = price;
+    }
+
+    public Menu()
+    {
     }
 
     public Menu(int menu_id, String food, double price) {

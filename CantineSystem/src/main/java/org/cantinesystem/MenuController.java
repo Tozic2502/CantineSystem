@@ -1,31 +1,23 @@
 package org.cantinesystem;
 
-import Utils.SqlConnection;
+import Service.MenuDAO;
+import Service.MenuService;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Menu;
-import Utils.CatineDAO;
 import models.Employee;
 
-import java.math.BigDecimal;
-
-import java.net.URL;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 import java.util.List;
 
-public class MenuController{
-    public void setEmployeeData(int employeeId, BigDecimal saldo) {
 public class MenuController
 {
     private Employee employee;
+    private MenuDAO menuDAO;
+    private List<Menu> menuItems = new ArrayList<>();
+
     public void setEmployeeData(Employee employee)
     {
         this.employee = employee;
@@ -36,36 +28,30 @@ public class MenuController
     private ListView<String> menuList;
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize()
+    {
+        menuDAO = new MenuService();
         loadMenuItems();
     }
 
-    private void loadMenuItems() throws SQLException {
-        List<Menu> menus = new ArrayList<>();
+    private void loadMenuItems()
+    {
         ObservableList<String> displayList = FXCollections.observableArrayList();
-        try (Connection conn = SqlConnection.getConnection()) {
-            CallableStatement stmt = conn.prepareCall("{Call Get_Menu ()}");
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()){
-                int Menu_id = rs.getInt("Menu_id");
-                String Food = rs.getString("Food");
-                double Price = rs.getFloat("Price");
-
-                menus.add(new Menu(Menu_id, Food, Price));
-            }
-            rs.close();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try
+        {
+            menuItems.addAll(menuDAO.getAllMenusItems());
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
 
 
-        for (Menu item : menus) {
+        for (Menu item : menuItems)
+        {
             displayList.add(item.getFood() + " - " + item.getPrice() + " DKK");
         }
 
         menuList.setItems(displayList);
     }
 }
-
