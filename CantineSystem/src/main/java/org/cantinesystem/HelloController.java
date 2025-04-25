@@ -89,7 +89,7 @@ public class HelloController
 
                 // Pass data to the controller
                 MenuController controller = loader.getController();
-                controller.setEmployeeData(employee); // You'll need to implement this
+                controller.setEmployeeData(employee);
 
                 // Replace the scene
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
