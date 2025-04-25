@@ -1,8 +1,6 @@
 package org.cantinesystem;
 
-import Utils.CatineDAODatabase;
 import Utils.SqlConnection;
-import Utils.Utilitys;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +20,7 @@ public class HelloController {
     @FXML Label LoginID, LoginUserName;
     @FXML Button BUserName, BID, BConfirmID;
     @FXML TextField TUserName, TID, TPassword;
-    Utilitys utils = new Utilitys();
+
 
 
     @FXML
